@@ -1,0 +1,18 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "GG",
+    "GG"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:string"
+    }
+  },
+  "tool": {
+    "tag": "ages_api:knifes"
+  },
+  "result": {
+    "item": "stone_age:cobweb_mesh"
+  }
+}

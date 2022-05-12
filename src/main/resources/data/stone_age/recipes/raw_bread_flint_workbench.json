@@ -1,0 +1,21 @@
+{
+  "type": "stone_age:flint_workbench",
+  "pattern": [
+    "FFF",
+    "S  "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:sugar"
+    },
+    "F": {
+      "item": "stone_age:flour"
+    }
+  },
+  "tool": {
+    "tag": "ages_api:knifes"
+  },
+  "result": {
+    "item": "stone_age:raw_bread"
+  }
+}
