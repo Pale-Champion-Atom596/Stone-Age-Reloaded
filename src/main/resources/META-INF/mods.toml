@@ -4,8 +4,8 @@ loaderVersion="[28,)"
 modId="stone_age"
 version="${file.jarVersion}"
 displayName="Stone Age"
-logoFile="stone_age.png"
-authors="Yanny"
+logoFile= "../assets/ages/stone_age.png"
+authors=["Yanny", "Atom596"]
 
 description='''
 Stone Age gives you feeling of man from stone age. No more magically created planks from wood logs, the way to first crafting table is long and dangerous.
