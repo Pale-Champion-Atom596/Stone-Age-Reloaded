@@ -10,8 +10,8 @@
     "Atom596"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://discord.gg/UbZkQjHAgN",
+    "sources": "https://github.com/Pale-Champion-Atom596/Stone-Age-Reloaded"
   },
 
   "license": "CC0-1.0",
@@ -24,7 +24,7 @@
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "ages.mixins.json"
   ],
 
   "depends": {
