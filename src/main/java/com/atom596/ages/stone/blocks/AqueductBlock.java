@@ -18,6 +18,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
@@ -25,9 +27,12 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -47,31 +52,11 @@ import java.util.Random;
 import static net.minecraft.state.properties.BlockStateProperties.WATERLOGGED;
 
 public class AqueductBlock extends Block implements TopBlockInfoProvider {
-    private static final Map<Integer, VoxelShape> SHAPES = new HashMap<>();
 
-    static {
-        SHAPES.put(0, getBaseShape());
-        SHAPES.put(1, VoxelShapes.or(getBaseShape(), getNorthShape()));
-        SHAPES.put(2, VoxelShapes.or(getBaseShape(), getEastShape()));
-        SHAPES.put(3, VoxelShapes.or(getBaseShape(), getNorthShape(), getEastShape()));
-        SHAPES.put(4, VoxelShapes.or(getBaseShape(), getSouthShape()));
-        SHAPES.put(5, VoxelShapes.or(getBaseShape(), getNorthShape(), getSouthShape()));
-        SHAPES.put(6, VoxelShapes.or(getBaseShape(), getEastShape(), getSouthShape()));
-        SHAPES.put(7, VoxelShapes.or(getBaseShape(), getNorthShape(), getEastShape(), getSouthShape()));
-        SHAPES.put(8, VoxelShapes.or(getBaseShape(), getWestShape()));
-        SHAPES.put(9, VoxelShapes.or(getBaseShape(), getNorthShape(), getWestShape()));
-        SHAPES.put(10, VoxelShapes.or(getBaseShape(), getEastShape(), getWestShape()));
-        SHAPES.put(11, VoxelShapes.or(getBaseShape(), getNorthShape(), getEastShape(), getWestShape()));
-        SHAPES.put(12, VoxelShapes.or(getBaseShape(), getSouthShape(), getWestShape()));
-        SHAPES.put(13, VoxelShapes.or(getBaseShape(), getNorthShape(), getSouthShape(), getWestShape()));
-        SHAPES.put(14, VoxelShapes.or(getBaseShape(), getEastShape(), getSouthShape(), getWestShape()));
-        SHAPES.put(15, VoxelShapes.or(getBaseShape(), getNorthShape(), getEastShape(), getSouthShape(), getWestShape()));
-    }
-
-    private static final BooleanProperty NORTH = BooleanProperty.create("north");
-    private static final BooleanProperty EAST = BooleanProperty.create("east");
-    private static final BooleanProperty SOUTH = BooleanProperty.create("south");
-    private static final BooleanProperty WEST = BooleanProperty.create("west");
+    private static final BooleanProperty NORTH = BooleanProperty.of("north");
+    private static final BooleanProperty EAST = BooleanProperty.of("east");
+    private static final BooleanProperty SOUTH = BooleanProperty.of("south");
+    private static final BooleanProperty WEST = BooleanProperty.of("west");
 
     private static final Map<Direction, BooleanProperty> FACING_TO_PROPERTY_MAP = Util.make(Maps.newEnumMap(Direction.class), (map) -> {
         map.put(Direction.NORTH, NORTH);
@@ -81,7 +66,7 @@ public class AqueductBlock extends Block implements TopBlockInfoProvider {
     });
 
     public AqueductBlock() {
-        super(Properties.create(Material.ROCK).hardnessAndResistance(2.0f));
+        super(Properties.of(Material.ROCK).hardnessAndResistance(2.0f));
         setDefaultState(getStateContainer().getBaseState()
                 .with(NORTH, false)
                 .with(SOUTH, false)
